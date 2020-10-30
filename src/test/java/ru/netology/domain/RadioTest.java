@@ -10,24 +10,48 @@ public class RadioTest {
     @Test
     public void shouldNextStation() {
         radio.nextStation();
-        assertEquals(0, radio.getCurrentStation());
+        assertEquals(6, radio.getCurrentStation());
     }
 
     @Test
     public void shouldPreviousStation() {
         radio.previousStation();
-        assertEquals(9, radio.getCurrentStation());
+        assertEquals(4, radio.getCurrentStation());
     }
 
     @Test
     public void shouldPlusSound() {
         radio.plusSound();
-        assertEquals(10, radio.getCurrentSound());
+        assertEquals(6, radio.getCurrentSound());
     }
 
     @Test
     public void shouldMinusSound() {
         radio.minusSound();
+        assertEquals(4, radio.getCurrentSound());
+    }
+
+    @Test
+    public void shouldMinSound() {
+        radio.setCurrentSound(-1);
         assertEquals(0, radio.getCurrentSound());
+    }
+
+    @Test
+    public void shouldMaxSound() {
+        radio.setCurrentSound(11);
+        assertEquals(10, radio.getCurrentSound());
+    }
+
+    @Test
+    public void shouldNextMaxStation() {
+        radio.setCurrentStation(10);
+        assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    public void shouldNextMinStation() {
+        radio.setCurrentStation(-1);
+        assertEquals(9, radio.getCurrentStation());
     }
 }
