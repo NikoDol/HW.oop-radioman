@@ -15,6 +15,14 @@ public class Radio {
 
     public void setCurrentStation(int currentStation) {
         this.currentStation = currentStation;
+        if (currentStation > highStation) {
+            setCurrentStation(lowStation);
+            return;
+        }
+        if (currentStation < lowStation) {
+            setCurrentStation(highStation);
+            return;
+        }
     }
 
     public int getCurrentSound() {
@@ -23,41 +31,29 @@ public class Radio {
 
     public void setCurrentSound(int currentSound) {
         this.currentSound = currentSound;
-    }
-
-    public void nextStation() {
-        // 9 подставлено , вместо currentStation для выполнения задания, по бранчам.
-        setCurrentStation(9 + 1);
-        if (currentStation > highStation) {
-            setCurrentStation(lowStation);
+        if (currentSound < minSound) {
+            setCurrentSound(minSound);
             return;
         }
-    }
-
-    public void previousStation() {
-        // 0 подставлено , вместо currentStation для выполнения задания, по бранчам.
-        setCurrentStation(0 - 1);
-        if (currentStation < lowStation) {
-            setCurrentStation(highStation);
-            return;
-        }
-    }
-
-    public void plusSound() {
-        // 10 подставлено , вместо currentSound для выполнения задания, по бранчам.
-        setCurrentSound(10 + 1);
         if (currentSound > maxSound) {
             setCurrentSound(maxSound);
             return;
         }
     }
 
+    public void nextStation() {
+        setCurrentStation(currentStation + 1);
+    }
+
+    public void previousStation() {
+        setCurrentStation(currentStation - 1);
+    }
+
+    public void plusSound() {
+        setCurrentSound(currentSound + 1);
+    }
+
     public void minusSound() {
-        // 9 подставлено , вместо currentSound для выполнения задания, по бранчам.
-        setCurrentSound(0 - 1);
-        if (currentSound < minSound) {
-            setCurrentSound(minSound);
-            return;
-        }
+        setCurrentSound(currentSound - 1);
     }
 }
